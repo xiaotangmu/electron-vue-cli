@@ -1,0 +1,41 @@
+https://www.cnblogs.com/luzhanshi/p/11045096.html
+
+ 3、electron打包生成exe文件
+打包方式1：DOS窗口命令打包
+
+DOS 下，输入 npm install electron-packager -g全局安装我们的打包神器：
+
+cnpm install electron-packager -g
+
+在项目文件夹下面，也就是根目录下面打开DOS执行打包命令：
+
+electron-packager . HelloWorld --platform=win32 --arch=x64 --icon=computer.ico --out=./out --asar --app-version=0.0.1 --overwrite --ignore=node_modules --electron-version 5.0.0
+
+各个参数介绍：
+
+HelloWorld ：你将要生成的exe文件的名称
+
+--platform=win32：确定了你要构建哪个平台的应用,可取的值有 darwin, linux, mas, win32
+
+--arch=x64：决定了使用 x86 还是 x64 还是两个架构都用
+
+--icon=computer.ico：自定义设置应用图标
+
+--out=./out：指定打包文件输出的文件夹位置,当前指定的为项目目录下的out文件夹
+
+--asar：该参数可以不加，如果加上，打包之后应用的源码会以.asar格式存在
+
+
+打包方式2：package.json设置打包：
+
+建议将打包的命令设置在package.json的script中
+
+设置如下:
+
+  "scripts": {"package":"electron-packager . HelloWorld --platform=win32 --arch=x64 --icon=computer.ico --out=./out --asar --app-version=0.0.1 --overwrite --ignore=node_modules"
+  }
+
+然后在项目文件夹DOS窗口下执行命令：
+
+npm run package
+

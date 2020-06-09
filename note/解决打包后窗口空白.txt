@@ -1,0 +1,5 @@
+原因信了网上的鸡巴把 package.json 里面的build 下 的 files 改为了 ./**/*
+
+改回来"files": [
+      "dist/electron/**/*"
+    ],
