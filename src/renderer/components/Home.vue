@@ -1,6 +1,6 @@
 <template>
   <div id="wrapper">
-    <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
+
     <main>
       <div class="left-side">
         <span class="title">
@@ -23,6 +23,12 @@
           <div class="title alt">Other Documentation</div>
           <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
           <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
+
+
+
+          <button class="alt" @click="openNew()">打开新窗口</button>
+
+
         </div>
       </div>
     </main>
@@ -31,6 +37,7 @@
 
 <script>
   import SystemInformation from './LandingPage/SystemInformation'
+  const { ipcRenderer } = require('electron')
 
   export default {
     name: 'landing-page',
@@ -38,7 +45,15 @@
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
-      }
+      },
+
+        openNew(){
+            this.openCalendarWindow();
+        },
+        openCalendarWindow () {
+          alert('hello');
+            ipcRenderer.send('openCalendarWindow')
+        }
     }
   }
 </script>
@@ -55,15 +70,16 @@
   body { font-family: 'Source Sans Pro', sans-serif; }
 
   #wrapper {
+    height: 100%;
+    padding: 60px 80px;
+    width: 100%;
     background:
       radial-gradient(
         ellipse at top left,
         rgba(255, 255, 255, 1) 40%,
         rgba(229, 229, 229, .9) 100%
       );
-    height: 100vh;
-    padding: 60px 80px;
-    width: 100vw;
+
   }
 
   #logo {
